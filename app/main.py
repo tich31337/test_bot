@@ -43,7 +43,7 @@ class ObserverBase:
 
 class Telegram(ObserverBase):
     def __init__(self, token, group_id):
-        self.url = "https://api.telegram.org/bot{}/".format(token)
+        self.url = f'https://api.telegram.org/bot{token}/'
         self.group_id = group_id
 
     def send_message(self, text):
