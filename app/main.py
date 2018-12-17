@@ -69,5 +69,10 @@ text_class = Text()
 text_class.attach(Telegram(env('TELEGRAM_TOKEN'),
                            env('TELEGRAM_GROUP', cast=int)))
 
+
+def run_server():
+    app.run(debug=False, host='0.0.0.0')
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
