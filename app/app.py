@@ -1,8 +1,7 @@
+import requests
+from envparse import env
 from flask import Flask
 from flask_restplus import Api, Resource, fields
-from envparse import env
-
-import requests
 
 env.read_envfile()
 
@@ -43,16 +42,17 @@ class ObserverBase:
 
 
 class Telegram(ObserverBase):
-    def __init__(self, token):
+    def __init__(self, token, group_id):
         self.url = "https://api.telegram.org/bot{}/".format(token)
+        self.group_id = group_id
 
     def send_message(self, text):
-        params = {'chat_id': '@test_chanel171218', 'text': text}
+        params = {'chat_id': self.group_id, 'text': text}
         response = requests.post(self.url + 'sendMessage', data=params)
         return response
 
 
-@api.route('/api')
+@api.route('/send_message/')
 class RestService(Resource):
 
     @api.expect(model)
@@ -66,7 +66,8 @@ class RestService(Resource):
 
 
 text_class = Text()
-text_class.attach(Telegram(env('TELEGRAM_TOKEN')))
+text_class.attach(Telegram(env('TELEGRAM_TOKEN'),
+                           env('TELEGRAM_GROUP', cast=int)))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
