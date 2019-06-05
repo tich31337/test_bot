@@ -15,7 +15,7 @@ jsonschema==2.6.0
 MarkupSafe==1.1.0
 pycparser==2.19
 pyflakes==2.0.0
-pyOpenSSL==18.0.0
+pyOpenSSL==19.0.0
 PySocks==1.6.8
 pytz==2018.7
 requests==2.20.1
