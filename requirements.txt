@@ -22,5 +22,5 @@ requests==2.20.1
 six==1.12.0
 urllib3==1.25.3
 Werkzeug==0.14.1
-win-inet-pton==1.0.1
+win-inet-pton==1.1.0
 wincertstore==0.2
